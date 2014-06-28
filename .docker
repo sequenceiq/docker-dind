@@ -1,0 +1,24 @@
+: ${PORT:=2375}
+: ${DOCKER_HOST:=tcp://127.0.0.1:$PORT}
+
+export PORT DOCKER_HOST
+
+alias dps='docker ps'
+alias dpsa='docker ps -a'
+
+docker-restart() {
+  kill -9 $(pgrep docker) &> /dev/null
+  wrapdocker &>/tmp/docker.log &
+}
+
+docker-set-version() {
+  VER=$1
+  : ${VER:?"please specify which docker version yu want to use, eg.: 0.9.1, 0.11.1, 0.12.0. 1.0.1 "}
+  : ${DOCKER_BIN:=/usr/local/bin/docker}
+
+  [ -f $DOCKER_BIN-$VER ] || ( wget https://get.docker.io/builds/Linux/x86_64/docker-$VER -O $DOCKER_BIN-$VER && chmod +x $DOCKER_BIN*)
+  rm -f $DOCKER_BIN
+  ln -s $DOCKER_BIN-$VER $DOCKER_BIN
+
+  docker-restart
+}
