@@ -1,5 +1,4 @@
-alias dps='docker ps'
-alias dpsa='docker ps -a'
+[ -f /tmp/docker-functions ] && . /tmp/docker-functions
 
 docker-restart() {
   kill -9 $(pgrep docker) &> /dev/null
