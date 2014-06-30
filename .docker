@@ -1,14 +1,9 @@
-: ${PORT:=2375}
-: ${DOCKER_HOST:=tcp://127.0.0.1:$PORT}
-
-export PORT DOCKER_HOST
-
 alias dps='docker ps'
 alias dpsa='docker ps -a'
 
 docker-restart() {
   kill -9 $(pgrep docker) &> /dev/null
-  wrapdocker &>/tmp/docker.log &
+  wrapdocker
 }
 
 docker-set-version() {
