@@ -1,7 +1,7 @@
 # Docker-in-Docker
 
 This image helps you to test Docker with different versions, without
-messing with you host system. It will set up a Docker container which
+messing with your host system. It will set up a Docker container which
 is able to run Docker inside.
 
 ## Quickstart
@@ -10,8 +10,8 @@ is able to run Docker inside.
 docker run -it --rm --privileged -e LOG=file sequenceiq/dind
 ```
 
-It will start a Docker daemon i the background (unix:///var/run/docker.sock)
-and provide a `bash` session where you can play with a vanilla docker
+It will start a Docker daemon in the background (unix:///var/run/docker.sock)
+and provide a `bash` session where you can play with a vanilla Docker
 environment:
  - no images pulled
  - no containers
